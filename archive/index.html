@@ -1,0 +1,21 @@
+---
+layout: layout
+title: "Archive"
+---
+{% include header.html %}
+<section class="section">
+	<div class="archive">
+		<ul>
+		{% for post in site.posts %}
+  			{% capture month %}{{ post.date | date: '%m%Y' }}{% endcapture %}
+  			{% capture nmonth %}{{ post.next.date | date: '%m%Y' }}{% endcapture %}
+    		
+    		{% if month != nmonth %}
+      			{% if forloop.index != 1 %}</ul>{% endif %}
+      			<h2>{{ post.date | date: '%b %Y' }}</h2><ul>
+    		{% endif %}
+  			<li>{{ post.date | date: "%d" }}&nbsp;&nbsp;<a href="/en{{ post.url }}">{{ post.title }}</a></li><br>
+{% endfor %}
+  	</div>
+</section>
+{% include footer.html %}

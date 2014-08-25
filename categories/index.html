@@ -1,0 +1,18 @@
+---
+layout: layout
+title: "Categories"
+---
+
+<section class="section">
+	<div class="container">
+		<h1>PAGE UNDER DEVELOPMENT</h1>
+		{% for cat in site.categories %}
+		  <h5>
+		    {{ cat[0] }}
+		  </h5>
+		  {% for post in site.categories.cat %}
+		  	{{ post }}
+		  {% endfor %}	
+		{% endfor %}
+  	</div>
+</section>

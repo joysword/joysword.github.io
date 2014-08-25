@@ -1,0 +1,19 @@
+---
+layout: layout
+title: "Tags"
+---
+
+{% include header.html %}
+
+<section class="section">
+	<div class="tags-list">
+		<h1>PAGE UNDER DEVELOPMENT</h1>
+		{% for ta in site.tags %}
+		    <div name="{{ ta[0] }}">
+		    	 <h5>{{ ta[0] }}</h5>
+		    </div>
+		{% endfor %}
+  	</div>
+</section>
+
+{% include footer.html %}

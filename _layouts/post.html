@@ -1,0 +1,22 @@
+---
+layout: layout
+---
+
+<section class="section">
+  <article>
+    <h1 class="post-title">
+      {{ page.title }}
+    </h1>
+
+    {% include byline.html %}
+
+    <div class="post-content">
+      {{ content }}
+    </div>
+    <hr>
+    
+    <hr>
+    {% include disqus.html %}
+  </article>
+</section>
+{% include footer.html %}

@@ -1,0 +1,31 @@
+---
+layout: layout
+title: "Blog"
+---
+{% include header.html %}
+<section class="section">
+    <div class="post-list">
+        {% for page in paginator.posts %}
+        <article>
+            <div class="post-list-title">
+                <h3>
+                    <a href="/en{{ page.url }}">{{ page.title }}</a>
+                </h3>
+
+                {% include byline.html %}
+            </div>
+
+            <div class="post-list">
+                {% if page.content contains '<!--more-->' %}
+                    {{ page.content | split:'<!--more-->' | first }}
+                {% else %}
+                    {{ page.excerpt }} {% endif %}
+            </div>
+            <div class="read-more"><a href="/en{{ page.url }}"><i class="fa fa-bookmark"></i> read more</a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    {% include paginator.html %}
+</section>
+{% include footer.html %}
