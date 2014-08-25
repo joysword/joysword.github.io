@@ -173,7 +173,8 @@ cd Python-2.7.8
 make && make altinstall
 ```
 
-**note:**  
+**note:**
+
 * `python 2.7.8` will be installed at `/usr/local`
 * It is critical that you use `make altinstall` when you install your custom version of Python. If you use the normal `make install` you will end up with two different versions of Python in the filesystem both named `python`. This can lead to problems that are very hard to diagnose.
 
@@ -222,12 +223,14 @@ pip install flask
 ```
 
 ### install testing app
-**create main python script**  
+**create main python script**
+
 ```
 vi hello.py
 ```
 
-in vim:  
+in vim:
+
 ```python
 from flask import Flask
 app = Flask(__name__)
@@ -241,7 +244,8 @@ if __name__ == "__main__":
 ```
 
 ### MILESTONE #2
-Run the script of the testing app  
+Run the script of the testing app
+
 ```
 python hello.py
 ```
@@ -266,7 +270,8 @@ sudo mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
 vi demoapp_nginx.conf
 ```
 
-in vim:  
+in vim:
+
 ```
 server {
     listen      80;
@@ -295,9 +300,11 @@ Browse to your server's public ip address and you will see **502 Bad Gateway** e
 This is what we expected. It means that Nginx has an issue connecting to uWSGI, our Python application host.
 
 In `demoapp_nginx.conf` we have this line:
+
 ```
 uwsgi_pass unix:/var/www/demoapp/demoapp_uwsgi.sock;
 ```
+
 It says that we would like Nginx and uWSGI to communicate using this socket file. But we haven't configured uWSGI yet, and this file doesn't exist, for now.
 
 ### configure demoapp uwsgi configuration file
@@ -306,6 +313,7 @@ vi demoapp_uwsgi.ini # note that we are still in /var/www/demoapp
 ```
 
 in vim:
+
 ```
 [uwsgi]
 #application's base folder
@@ -333,7 +341,8 @@ callable = app
 logto = /var/log/uwsgi/%n.log 
 ```
 
-**note:**  
+**note:**
+
 *  Nginx versions from other repositories may use a user `www-data` instead of `nginx`
 
 ### create directory for uwsgi log
@@ -343,7 +352,8 @@ sudo chown -R ec2-user:ec2-user /var/log/uwsgi
 ```
 
 ### MILESTONE #4
-Execute uWSGI and pass it the newly created configuration file  
+Execute uWSGI and pass it the newly created configuration file
+
 ```
 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 ```
@@ -355,14 +365,17 @@ Browse to your server. Now nginx should be able to connect to uWSGI process
 
 ### configure uwsgi emperor
 **note:**  
+
 * uWSGI Emperor is for reading configuration files and spawning uWSGI processes.
 
 **create emperor configuration file**
+
 ```
 sudo vi /etc/init/uwsgi.conf
 ```
 
-in vim:  
+in vim:
+
 ```
 description "uWSGI"
 start on runlevel [2345]
@@ -375,31 +388,36 @@ env LOGTO=/var/log/uwsgi/emperor.log
 exec $UWSGI --master --emperor /etc/uwsgi/vassals --die-on-term --uid nginx --gid nginx --logto $LOGTO
 ```
 
-**create necessary folders**  
+**create necessary folders**
+
 ```
 sudo mkdir /etc/uwsgi && sudo mkdir /etc/uwsgi/vassals
 sudo ln -s /var/www/demoapp/demoapp_uwsgi.ini /etc/uwsgi/vassals 
 ```
 
-**set the owner of the application and log folders**  
+**set the owner of the application and log folders**
+
 ```
 sudo chown -R nginx:nginx /var/www/demoapp/
 sudo chown -R nginx:nginx /var/log/uwsgi/ 
 ```
 
-**modify demoapp uwsgi configuration file**  
+**modify demoapp uwsgi configuration file**
+
 ```
 vi /var/www/demoapp/demoapp_uwsgi.ini
 ```
 
-in vim:  
+in vim:
+
 ```
 ...
 #permissions for the socket file
 chmod-socket    = 644 
 ```
 
-**start uwsgi**  
+**start uwsgi**
+
 ```
 sudo start uwsgi 
 ```
@@ -407,7 +425,7 @@ sudo start uwsgi
 ### reference
 [4] http://vladikk.com/2013/09/12/serving-flask-with-nginx-on-ubuntu/ 
 
-==========
+=======================
 
 ## Add A Second Application
 ### Assumptions
@@ -415,22 +433,26 @@ sudo start uwsgi
 
 ### configure demoapp
 
-**remove demoapp configuration file**  
+**remove demoapp configuration file**
+
 ```
 sudo rm /etc/nginx/conf.d/demo_uwsgi.conf
 ```
 
-**restore previously back-uped configuration file**  
+**restore previously back-uped configuration file**
+
 ```
 sudo mv /etc/nginx/conf.d/default.conf.bak /etc/nginx/conf.d/default.conf
 ```
 
-**modify default configuration file**  
+**modify default configuration file**
+
 ```
 sudo vi /etc/nginx/conf.d/default.conf
 ```
 
-in vim:  
+in vim:
+
 ```
 ...
 location = /demoapp { rewrite ^ /demoapp/; }
@@ -451,18 +473,21 @@ Browse to your server to check if demoapp has correct url prefix `demoapp`
 
 **upload twist to /home/ec2-user/**
 
-**move it to /var/www/**  
+**move it to /var/www/**
+
 ```
 sudo mv /home/ec2-user/twist /var/www/twist
 cd /var/www/twist 
 ```
 
-**modify nginx configuration**  
+**modify nginx configuration**
+
 ```
 sudo vi /etc/nginx/conf.d/default.conf
 ```
 
-in vim:  
+in vim:
+
 ```
 ...
 location = /twist { rewrite ^ /twist/; }
@@ -475,12 +500,14 @@ location @twist {
 ...
 ```
 
-**create twist_uwsgi.ini**  
+**create twist_uwsgi.ini**
+
 ```
 vi twist_uwsgi.ini
 ```
 
-in vim:  
+in vim:
+
 ```
 [uwsgi]
 #application's base folder
@@ -506,12 +533,14 @@ callable = app
 logto = /var/log/uwsgi/%n.log 
 ```
 
-**symlink it to /var/uwsgi/vassals**  
+**symlink it to /var/uwsgi/vassals**
+
 ```
 sudo ln -s /var/www/twist/twist_uwsgi.ini /etc/uwsgi/vassals 
 ```
 
-**set owner of twist nginx**  
+**set owner of twist nginx**
+
 ```
 sudo chown -R nginx:nginx /var/www/twist/ 
 ```
@@ -527,7 +556,8 @@ Unfortunately, it is not convenient to insall tweepy, because the virtual enviro
 At this point, you have two options.
 
 ### option 1:
-**change the owner of the virtual environment**  
+**change the owner of the virtual environment**
+
 ```
 sudo chown -R ec2-user:ec2-user /var/www/demoapp/venv
 ```
@@ -538,46 +568,54 @@ sudo chown -R ec2-user:ec2-user /var/www/demoapp/venv
 Note that you don’t need to change settings for nginx.  
 You need to change settings for [appname]_uwsgi.ini and for uwsgi emperor
 
-**install new virtualenv**  
+**install new virtualenv**
+
 ```
 cd ~
 virtualenv venv
 . ./venv/bin/activate
 ```
 
-**install tweepy**  
+**install tweepy**
+
 ```
 pip install flask uwsgi tweepy
 ```
 
-**modify demoapp uwsgi configuration file**  
+**modify demoapp uwsgi configuration file**
+
 ```
 cd /var/www/demoapp
 sudo vi demoapp_uwsgi.ini
 ```
 
-in vim:  
+in vim:
+
 ```
 home = /home/ec2-user/venv/
 ```
 
-**modify twist uwsgi configuration file**  
+**modify twist uwsgi configuration file**
+
 ```
 cd ../twist
 sudo vi twist_uwsgi.ini
 ```
 
-in vim:  
+in vim:
+
 ```
 home = /home/ec2-user/venv/
 ```
 
-**modify emperor configuration file**  
+**modify emperor configuration file**
+
 ```
 sudo vi /etc/init/uwsgi.conf
 ```
 
-in vim:  
+in vim:
+
 ```
 env UWSGI=/home/ec2-user/venv/bin/uwsgi
 ```
