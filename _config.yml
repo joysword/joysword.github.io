@@ -1,5 +1,4 @@
 paginate: 6
-destination: ../joysword/blog/en/
 markdown: redcarpet
 pygments: true
 timezone: America/Chicago
