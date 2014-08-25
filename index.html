@@ -9,7 +9,7 @@ title: "Blog"
         <article>
             <div class="post-list-title">
                 <h3>
-                    <a href="/en{{ page.url }}">{{ page.title }}</a>
+                    <a href="{{ page.url }}">{{ page.title }}</a>
                 </h3>
 
                 {% include byline.html %}
@@ -21,7 +21,7 @@ title: "Blog"
                 {% else %}
                     {{ page.excerpt }} {% endif %}
             </div>
-            <div class="read-more"><a href="/en{{ page.url }}"><i class="fa fa-bookmark"></i> read more</a>
+            <div class="read-more"><a href="{{ page.url }}"><i class="fa fa-bookmark"></i> read more</a>
             </div>
         </article>
         {% endfor %}
