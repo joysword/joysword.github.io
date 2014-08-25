@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Install Nginx PHP MySQL Python Flask on Amazon EC2 Linux AMI"
+date: 2014-02-17 13:00
+category: Techy
+tags: Linux Amazon EC2 AMI Nginx PHP MySQL Python Flask
+---
+
 ## Assumptions:
 * you have a brande new EC2 instance running Amazon Linux AMI
 * your time zone is `America/Chicago`
