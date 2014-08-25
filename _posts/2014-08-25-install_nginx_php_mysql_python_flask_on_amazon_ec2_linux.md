@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Install Nginx PHP MySQL Python Flask on Amazon EC2 Linux AMI"
-date: 2014-02-17 13:00
+date: 2014-08-25 13:17
 category: Techy
 tags: Linux Amazon EC2 AMI Nginx PHP MySQL Python Flask
 ---
@@ -33,13 +33,17 @@ sudo chkconfig php-fpm on
 sudo chkconfig memcached on
 ```
  
+<!--more-->
+
 ### create files
 **create fcgi configuration file**
+
 ```
 sudo vi /etc/nginx/fcgi.conf
 ```
 
 in vim:
+
 ```
 fastcgi_param GATEWAY_INTERFACE CGI/1.1;
 fastcgi_param SERVER_SOFTWARE nginx/$nginx_version;
@@ -67,11 +71,13 @@ fastcgi_param REDIRECT_STATUS 200;
 ```
 
 **create nginx configuration file**
+
 ```
 sudo vi /etc/nginx/conf.d/default.conf
 ```
 
 in vim:
+
 ```
 server {
         listen       80;
@@ -102,11 +108,13 @@ server {
 ```
 
 **set php-fpm port**
+
 ```
 sudo vi /etc/php-fpm.d/www.conf
 ```
 
 in vim:
+
 ```
 ;listen = 127.0.0.1:9000
 listen = /var/run/php-fpm/php-fpm.sock
