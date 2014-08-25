@@ -1,5 +1,7 @@
 paginate: 6
-markdown: redcarpet
+markdown: kramdown
+kramdown:
+  input: GFM
 pygments: true
 timezone: America/Chicago
 encoding: UTF-8
