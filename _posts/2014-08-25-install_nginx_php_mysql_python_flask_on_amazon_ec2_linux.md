@@ -36,12 +36,14 @@ sudo chkconfig memcached on
 <!--more-->
 
 ### create files
-**create fcgi configuration file**  
+**create fcgi configuration file**
+
 ```
 sudo vi /etc/nginx/fcgi.conf
 ```
 
-in vim:  
+in vim:
+
 ```
 fastcgi_param GATEWAY_INTERFACE CGI/1.1;
 fastcgi_param SERVER_SOFTWARE nginx/$nginx_version;
@@ -68,12 +70,14 @@ fastcgi_param SERVER_NAME $server_name;
 fastcgi_param REDIRECT_STATUS 200;
 ```
 
-**create nginx configuration file**  
+**create nginx configuration file**
+
 ```
 sudo vi /etc/nginx/conf.d/default.conf
 ```
 
-in vim:  
+in vim:
+
 ```
 server {
         listen       80;
@@ -103,12 +107,14 @@ server {
 }
 ```
 
-**set php-fpm port**  
+**set php-fpm port**
+
 ```
 sudo vi /etc/php-fpm.d/www.conf
 ```
 
-in vim:  
+in vim:
+
 ```
 ;listen = 127.0.0.1:9000
 listen = /var/run/php-fpm/php-fpm.sock
@@ -127,7 +133,8 @@ group = nginx
 sudo vi /etc/php.d/memcached.ini
 ```
 
-in vim:  
+in vim:
+
 ```
 ; Enable memcache extension module
 extension=memcache.so
