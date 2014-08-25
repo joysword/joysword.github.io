@@ -1,5 +1,5 @@
 paginate: 6
-markdown: redcarpet
+markdown: kramdown
 pygments: true
 timezone: America/Chicago
 encoding: UTF-8

@@ -134,6 +134,7 @@ sudo vi /etc/php.d/memcached.ini
 ```
 
 in vim:
+
 ```
 ; Enable memcache extension module
 extension=memcache.so
