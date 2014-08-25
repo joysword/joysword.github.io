@@ -173,7 +173,7 @@ cd Python-2.7.8
 make && make altinstall
 ```
 
-**note:**
+**note:**  
 * `python 2.7.8` will be installed at `/usr/local`
 * It is critical that you use `make altinstall` when you install your custom version of Python. If you use the normal `make install` you will end up with two different versions of Python in the filesystem both named `python`. This can lead to problems that are very hard to diagnose.
 
