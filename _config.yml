@@ -1,11 +1,9 @@
 paginate: 6
-markdown: kramdown
+markdown: redcarpet
 pygments: true
 timezone: America/Chicago
 encoding: UTF-8
 permalink: posts/:year/:month/:title
-kramdown:
-  input: GFM
 title:
   zh: 夜阑卧听风吹雨
   en: Shi Yin's Blog
