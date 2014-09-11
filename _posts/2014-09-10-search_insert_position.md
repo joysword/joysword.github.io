@@ -23,7 +23,7 @@ tags: LeetCode algorithm interview
 
 ### Solution
 
-[Search Insert Position](https://oj.leetcode.com/problems/search-insert-position/) is very easy, but the `\(O(log(n))\)` solution requires some attention to avoid bugs.
+[Search Insert Position](https://oj.leetcode.com/problems/search-insert-position/) is very easy, but the \\(O(log(n))\\) solution requires some attention to avoid bugs.
 
 #### Simple solution : O(n)
 A naive solution would be traverse the array, starting from index `\(0\)`, as long as the target value is larger than value in current index, move index to right by 1.
