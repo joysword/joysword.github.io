@@ -28,7 +28,7 @@ tags: LeetCode algorithm interview
 #### Simple solution : O(n)
 A naive solution would be traverse the array, starting from index `\(0\)`, as long as the target value is larger than value in current index, move index to right by 1.
 
-using `` `\( and \)` ``
+using `` `\\( and \\)` ``
 
 `\(\forall x \in X, \quad \exists y \leq \epsilon\)`
 
