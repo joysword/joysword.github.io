@@ -42,7 +42,7 @@ From the first example in **Description**, we know that if the value to be inser
 **The index for insertion is `i` if the value to be inserted is not greater than the `i`th element and it is greater than the `i-1`st element. i.e. (i-1, i]**
 
 ### Summary
-Using binary search to locate the position to insert the value
+Using binary search to locate the position to insert the value.
 
 ### More
 There is one thing we need to pay attention when implement code for this problem (and possibly for all binary search problems): pointers and corresponding stop coniditon.
