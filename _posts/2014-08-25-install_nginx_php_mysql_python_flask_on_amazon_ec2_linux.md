@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "Install Nginx PHP MySQL Python Flask on Amazon EC2 Linux AMI"
-date: 2014-08-25 13:17
+date: 2015-01-01 13:17
 category: Techy
 tags: Linux Amazon EC2 AMI Nginx PHP MySQL Python Flask
 ---
 
 ## Assumptions:
-* you have a brande new EC2 instance running Amazon Linux AMI
+* you have a brand new EC2 instance running Amazon Linux AMI
 * your time zone is `America/Chicago`
 
 ## Install Nginx PHP-FPM and MySQL
@@ -19,7 +19,7 @@ sudo /bin/rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 sudo /bin/rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 ```
 
-### install nginx php mysql memcache
+### install nginx php mysql memcached memcache
 ```
 sudo yum -y update
 sudo ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
@@ -27,6 +27,7 @@ sudo yum install -y gcc make nginx php-fpm php-devel php-mysql php-pdo php-pear 
 
 sudo pecl install memcache
 
+# auto start nginx php mysql memcached
 sudo chkconfig nginx on
 sudo chkconfig mysqld on
 sudo chkconfig php-fpm on
@@ -124,7 +125,10 @@ listen.owner = nginx
 listen.group = nginx
 ;listen.mode = 0666
 listen.mode = 0664
+
+;user = apache
 user = nginx
+;group = apache
 group = nginx
 ```
 
@@ -137,7 +141,36 @@ in vim:
 
 ```
 ; Enable memcache extension module
+extension=memcached.so
+```
+
+### enable memcache
+```
+sudo vi /etc/php.ini
+```
+
+in vim:
+
+```
 extension=memcache.so
+```
+
+### add a test web page
+```
+sudo vi /var/www/index.html
+```
+
+in vim:
+
+```html
+<html>
+<head>
+    <title>Test Page</title>
+</head>
+<body>
+    <h3>This is our test page</h3>
+</body>
+</html>
 ```
 
 ### start service
@@ -149,8 +182,8 @@ sudo service memcached start
 ```
 
 ### MILESTONE #1
-Browse to your server and **you should get Nginx greeting page**  
-`http://ec2-54-208-30-174.compute-1.amazonaws.com:8080/`
+Browse to your server and **you should get the test page**  
+`http://ec2-54-208-30-174.compute-1.amazonaws.com/`
 
 ### reference
 [1] http://nizhishuai.com/2014/04/19/article-148.html  
@@ -166,33 +199,35 @@ sudo yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-de
 
 ### download and install python
 ```
+cd ~
 wget http://python.org/ftp/python/2.7.8/Python-2.7.8.tar.xz
 tar xf Python-2.7.8.tar.xz
 cd Python-2.7.8
 ./configure --prefix=/usr/local  --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
-make && make altinstall
+make && sudo make altinstall
 ```
 
 **note:**
 
 * `python 2.7.8` will be installed at `/usr/local`
-* It is critical that you use `make altinstall` when you install your custom version of Python. If you use the normal `make install` you will end up with two different versions of Python in the filesystem both named `python`. This can lead to problems that are very hard to diagnose.
+* It is critical that you use `make altinstall` when installing your custom version of Python. If using the normal `make install`, you will end up with two different versions of Python in the filesystem both named `python`. This can lead to problems that are very hard to diagnose.
 
 ### download and install setuptools and pip
 ```
 # get the setup script for setuptools:
+cd ~
 sudo wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
 
 # install setuptools for python 2.7
-sudo /usr/local/python2.7 ez_setup.py
+sudo /usr/local/bin/python2.7 ez_setup.py
 
-# insall
-sudo /usr/local/easy_install-2.7 pip
+# insall pip
+sudo /usr/local/bin/easy_install-2.7 pip
 ```
 
 ### install virtual environment
 ```
-sudo /usr/local/pip2.7 install virtualenv
+sudo /usr/local/bin/pip2.7 install virtualenv
 ```
 
 ### reference
@@ -253,7 +288,7 @@ python hello.py
 Browse to your server's port 8080 and see the app in action  
 `http://ec2-54-208-30-174.compute-1.amazonaws.com:8080/`
 
-**You should see 'Hello World!'**
+**You should see 'Hello World!' in plain text**
 
 ## Install and configure uWSGI
 
@@ -290,7 +325,12 @@ server {
 ### symlink demoapp configuration file to nginx configuration file
 ```
 sudo ln -s /var/www/demoapp/demoapp_nginx.conf /etc/nginx/conf.d/
-sudo /etc/init.d/nginx restart
+```
+
+### restart nginx and uwsgi
+```
+sudo service nginx restart
+sudo restart uwsgi
 ```
 
 ### MILESTONE #3
@@ -361,10 +401,10 @@ uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 Browse to your server. Now nginx should be able to connect to uWSGI process  
 `http://ec2-54-208-30-174.compute-1.amazonaws.com/`
 
-**You should see 'Hello World!'**
+**You should see 'Hello World!' in plain text**
 
 ### configure uwsgi emperor
-**note:**  
+**note:**
 
 * uWSGI Emperor is for reading configuration files and spawning uWSGI processes.
 
@@ -402,24 +442,10 @@ sudo chown -R nginx:nginx /var/www/demoapp/
 sudo chown -R nginx:nginx /var/log/uwsgi/ 
 ```
 
-**modify demoapp uwsgi configuration file**
-
-```
-vi /var/www/demoapp/demoapp_uwsgi.ini
-```
-
-in vim:
-
-```
-...
-#permissions for the socket file
-chmod-socket    = 644 
-```
-
 **start uwsgi**
 
 ```
-sudo start uwsgi 
+sudo start uwsgi
 ```
 
 ### reference
@@ -436,7 +462,7 @@ sudo start uwsgi
 **remove demoapp configuration file**
 
 ```
-sudo rm /etc/nginx/conf.d/demo_uwsgi.conf
+sudo rm /etc/nginx/conf.d/demoapp_nginx.conf
 ```
 
 **restore previously back-uped configuration file**
@@ -462,7 +488,15 @@ location @demoapp {
   uwsgi_param SCRIPT_NAME /demoapp;
   uwsgi_modifier1 30;
   uwsgi_pass unix:/var/www/demoapp/demoapp_uwsgi.sock;
+}
 ...
+```
+
+**restart nginx and uwsgi**
+
+```
+sudo service nginx restart
+sudo restart uwsgi
 ```
 
 ### MILESTONE #5
@@ -497,6 +531,7 @@ location @twist {
   uwsgi_param SCRIPT_NAME /twist;
   uwsgi_modifier1 30;
   uwsgi_pass unix:/var/www/twist/twist_uwsgi.sock;
+}
 ...
 ```
 
@@ -517,14 +552,15 @@ base = /var/www/twist
 app = twist
 module = %(app)
 
-home = /var/www/demoapp/venv # home should still be the path of virtual environment
+# home should still be the path of virtual environment
+home = /var/www/demoapp/venv
 pythonpath = %(base)
 
 #socket file's location
 socket = /var/www/twist/%n.sock
 
 #permissions for the socket file
-chmod-socket    = 644
+chmod-socket    = 666
 
 #the variable that holds a flask application inside the module imported at line #6
 callable = app
@@ -545,13 +581,20 @@ sudo ln -s /var/www/twist/twist_uwsgi.ini /etc/uwsgi/vassals
 sudo chown -R nginx:nginx /var/www/twist/ 
 ```
 
+**restart nginx and uwsgi**
+
+```
+sudo service nginx restart
+sudo restart uwsgi
+```
+
 ### MILESTONE #6
 Browse to your server's public ip address with prefix `twist` and see **Internal Server Error** message  
 `http://ec2-54-208-30-174.compute-1.amazonaws.com/twist/`
 
-This is absolutely OK. The issue here is that tweep haven't been installed. You can see more details about the error message in `twist_uswgi.log`
+This is absolutely OK. The issue here is that tweepy hasn't been installed. You can see more details about the error message in `twist_uswgi.log`
 
-Unfortunately, it is not convenient to insall tweepy, because the virtual environment is in `demoapp`, which has been set owner nginx, you (as ec2-user) cannot do play with it.
+Unfortunately, it is not convenient to insall tweepy, because the virtual environment is in `demoapp`, which has been set owner nginx, you (as ec2-user) cannot play with it.
 
 At this point, you have two options.
 
@@ -567,6 +610,12 @@ sudo chown -R ec2-user:ec2-user /var/www/demoapp/venv
 
 Note that you don’t need to change settings for nginx.  
 You need to change settings for [appname]_uwsgi.ini and for uwsgi emperor
+
+**deactivate current virtualenv**
+
+```
+deactivate
+```
 
 **install new virtualenv**
 
@@ -629,8 +678,110 @@ execvp(): Permission denied [core/emperor.c line 1434]
 **fix 2:** set owner of newly installed venv nginx (not work)  
 **fix 3:** set permission of newly installed venv 777 (not work)
 
+### fix 1
+```
+sudo vi /etc/init/uwsgi.conf
+```
+
+in vim:
+
+```
+...
+exec $UWSGI --master --emperor /etc/uwsgi/vassals --die-on-term --uid root --gid root --logto $LOGTO
+...
+```
+
 ### MILESTONE #7
 Browse to your server's with prefix `twist` and see twist app in action  
 `http://ec2-54-208-30-174.compute-1.amazonaws.com/twist/`
 
+## In the future
+
+In the future if new apps need to be installed, repeat steps between **MILESTONE #5** and **MILESTONE #6**, replacing `twist` with your app's name.
+
+Below is an example of adding a new app called `accessibility`, and the python script is called `acc.py`.
+
+### add the new app
+
+**upload accessibility to /home/ec2-user/**
+
+**move it to /var/www/**
+
+```
+sudo mv /home/ec2-user/accessibility /var/www/accessibility
+cd /var/www/accessibility
+```
+
+**modify nginx configuration**
+
+```
+sudo vi /etc/nginx/conf.d/default.conf
+```
+
+in vim:
+
+```
+...
+location = /accessibility { rewrite ^ /accessibility/; }
+location /accessibility { try_files $uri @accessibility; }
+location @accessibility {
+  include uwsgi_params;
+  uwsgi_param SCRIPT_NAME /accessibility;
+  uwsgi_modifier1 30;
+  uwsgi_pass unix:/var/www/accessibility/accessibility_uwsgi.sock;
+}
+...
+```
+
+**create accessibility_uwsgi.ini**
+
+```
+vi accessibility_uwsgi.ini
+```
+
+in vim:
+
+```
+[uwsgi]
+#application's base folder
+base = /var/www/accessibility
+
+#python module to import
+app = acc
+module = %(app)
+
+home = /home/ec2-user/venv
+pythonpath = %(base)
+
+#socket file's location
+socket = /var/www/accessibility/%n.sock
+
+#permissions for the socket file
+chmod-socket    = 666
+
+#the variable that holds a flask application inside the module imported at line #6
+callable = app
+
+#location of log files
+logto = /var/log/uwsgi/%n.log 
+```
+
+**symlink it to /var/uwsgi/vassals**
+
+```
+sudo ln -s /var/www/accessibility/accessibility_uwsgi.ini /etc/uwsgi/vassals 
+```
+
+**set owner of accessibility nginx**
+
+```
+sudo chown -R nginx:nginx /var/www/accessibility/ 
+```
+
+**restart nginx and uwsgi**
+
+```
+sudo service nginx restart
+sudo restart uwsgi
+```
 
