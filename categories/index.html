@@ -11,8 +11,8 @@ title: "Categories"
 		    {{ cat[0] }}
 		  </h5>
 		  {% for post in site.categories.cat %}
-		  	{{ post }}
-		  {% endfor %}	
+		  	{{ post.title }}
+		  {% endfor %}
 		{% endfor %}
   	</div>
 </section>
