@@ -2,17 +2,27 @@
 layout: layout
 title: "Categories"
 ---
-
+{% include header.html %}
 <section class="section">
-	<div class="container">
-		<h1>PAGE UNDER DEVELOPMENT</h1>
-		{% for cat in site.categories %}
-		  <h5>
-		    {{ cat[0] }}
-		  </h5>
-		  {% for post in site.categories.cat %}
-		  	{{ post.title }}
-		  {% endfor %}
-		{% endfor %}
-  	</div>
+	{% capture site_categories %}{% for cat in site.categories %}{{ cat | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+	{% assign cat_words = site_categories | split:',' | sort %}
+	<div class="categories">
+	  <ul class="tag-cloud inline">
+	  {% for item in (0..site.categories.size) %}{% unless forloop.last %}
+	  {% capture this_word %}{{ cat_words[item] | strip_newlines }}{% endcapture %}
+	    <li><a href="#{{ this_word | cgi_escape }}">{{ this_word }} <span>{{ site.categories[this_word].size }}</span></a></li>
+	  {% endunless %}{% endfor %}
+	  </ul>
+
+	  {% for item in (0..site.categories.size) %}{% unless forloop.last %}
+	    {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
+	  <h2 id="{{ this_word | cgi_escape }}">{{ this_word }}</h2>
+	  <ul>
+	    {% for post in site.categories[this_word] %}
+	      <li>{{ post.date | date: "%b %d %Y" }}&nbsp;&raquo;&nbsp;<a href="{{ post.url }}">{{ post.title }}</a></li><br>
+	    {% endfor %}
+	  </ul>
+	  {% endunless %}{% endfor %}
+	</div>
 </section>
+{% include footer.html %}
