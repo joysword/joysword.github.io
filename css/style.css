@@ -131,8 +131,8 @@ a:hover {
 	overflow: visible;
 	width: auto;
 }
-	
-/* GENERAL */ 
+
+/* GENERAL */
 
 #wrapper {
 	overflow: hidden;
@@ -231,18 +231,24 @@ article div.pull {
 
 /* ARCHIVE */
 
-.archive ul {
+.archive ul,
+.tags ul,
+.categories ul {
     margin: 0;
     padding: 0;
 }
 
-.archive ul li {
+.archive ul li,
+.tags ul li,
+.categories ul li {
     margin-left: 20px;
     list-style-type: disc;
     font-size: 18px; font-size: 1.8rem;
 }
 
-.archive h2, .archive h3, .archive h4, .archive h5, .archive h6 {
+.archive h2, .archive h3, .archive h4, .archive h5, .archive h6,
+.tag h2, .tag h3, .tag h4, .tag h5, .tag h6,
+.categories h2, .categories h3, .categories h4, .categories h5, .categories h6 {
     text-transform: none;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -306,7 +312,7 @@ article div.pull {
 /* Media Queries */
 
 @media screen and (max-width: 1199px) {
-    
+
     .container {
         margin-left: 50px; /*105px;*/
         margin-right: 10px; /*105px;*/
@@ -318,7 +324,7 @@ article div.pull {
     .container {
         margin-left: 50px;
         margin-right: 10px;
-    }   
+    }
 }
 
 @media screen and (max-width: 767px) {
