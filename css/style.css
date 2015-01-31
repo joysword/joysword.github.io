@@ -270,12 +270,13 @@ article div.pull {
     overflow:hidden;
 }
 .tag-cloud li {
+    list-style:none;
     line-height:1.8em;
-    list-style-type: none;
-    margin-left: 0;
 }
 .tag-cloud.inline li {
     float:left;
+    list-style-type: none;
+    margin-left: 0;
 }
 .tag-cloud a {
     padding: 3px 6px;
