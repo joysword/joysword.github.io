@@ -15,7 +15,7 @@ title: "Categories"
 	  </ul>
 
 	  {% for item in (0..site.categories.size) %}{% unless forloop.last %}
-	    {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
+	    {% capture this_word %}{{ cat_words[item] | strip_newlines }}{% endcapture %}
 	  <h2 id="{{ this_word | cgi_escape }}">{{ this_word }}</h2>
 	  <ul>
 	    {% for post in site.categories[this_word] %}
