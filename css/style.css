@@ -261,9 +261,8 @@ article div.pull {
 
 .tag-cloud ul li {
     display: inline;
-    list-style-type: none;
-    margin-left: 0;
 }
+
 .tag-cloud {
     list-style:none;
     margin:0;
@@ -271,8 +270,9 @@ article div.pull {
     overflow:hidden;
 }
 .tag-cloud li {
-    list-style:none;
     line-height:1.8em;
+    list-style-type: none;
+    margin-left: 0;
 }
 .tag-cloud.inline li {
     float:left;
