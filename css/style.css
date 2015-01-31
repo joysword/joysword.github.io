@@ -247,7 +247,7 @@ article div.pull {
 }
 
 .archive h2, .archive h3, .archive h4, .archive h5, .archive h6,
-.tag h2, .tag h3, .tag h4, .tag h5, .tag h6,
+.tags h2, .tags h3, .tags h4, .tags h5, .tags h6,
 .categories h2, .categories h3, .categories h4, .categories h5, .categories h6 {
     text-transform: none;
     margin-top: 20px;
