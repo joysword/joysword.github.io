@@ -1,4 +1,4 @@
-paginate: 6
+paginate: 10
 markdown: redcarpet
 pygments: true
 redcarpet:

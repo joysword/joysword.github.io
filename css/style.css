@@ -11,14 +11,14 @@ body {
     color: #2d2d2d;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial， 'Hiragino Sans GB', 'STHeiti', 'Microsoft YaHei', sans-serif;
     font-size: 18px; font-size: 1.8em;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.6em;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
     font-style: normal;
-    margin: 15px 0 10px;
+    margin: 20px 0 10px;
 }
 
 p {
@@ -184,28 +184,28 @@ article img.noclip {
 }
 
 article h1 {
-    font-size: 30px;
+    font-size: 34px;
 }
 
 article h2 {
-    font-size: 26px;
+    font-size: 30px;
 }
 
 article h3 {
-    font-size: 22px;
+    font-size: 26px;
 }
 
 article h4 {
-    font-size: 20px;
+    font-size: 22px;
 }
 
 article h5 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 article h6 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -221,7 +221,7 @@ article section.byline {
 
 article .post-content {
     margin: 10px 0 25px;
-    line-height: 1.8em;
+    line-height: 1.6em;
 }
 
 article.about p, .content.about p, article.error, .content.error {
