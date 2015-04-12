@@ -52,6 +52,15 @@ blockquote {
     border-left: 3px solid #c7254e;
 }
 
+#another-blog {
+    font-size: 14px;
+    font-size: 1.4rem;
+}
+
+code {
+    font-family: "Source Code Pro", Menlo, Monaco, Concolas, "Courier New", monospace;
+}
+
 /* NAV BAR */
 
 #logo {
@@ -271,6 +280,7 @@ article .post-list-title h2 {
     margin: 20px 0 10px;
     padding: 0 0 0 0;
     font-weight: 300;
+    font-family: 'Source Code Pro', Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .archive h2, .tags h2, .categories h2 {
