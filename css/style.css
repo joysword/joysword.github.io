@@ -11,7 +11,7 @@ body {
 	background: #f3f3f3;
     color: #2d2d2d;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 15px; font-size: 1.5rem;
+    font-size: 18px; font-size: 1.8rem;
     font-weight: 400;
     line-height: 25px;
 }
@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: "Montserrat", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-style: normal;
-    margin: 15px 0 10px;
+    margin: 20px 0 20px;
 }
 
 p {
@@ -48,7 +48,7 @@ li {
 
 blockquote {
     margin: 10px 0 10px 10px;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 12px;
     font-size: 0.9em;
     border-left: 3px solid #c7254e;
 }
