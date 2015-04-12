@@ -1,10 +1,10 @@
 	<section class="byline">
       {{ page.date | date: "%B %e, %Y" }} | <i class="fa fa-folder"></i>
         {% for cat in page.categories %}
-          <a href="/en/categories/#{{cat}}">{{cat}}</a>
+          <a href="/categories/#{{cat}}">{{cat}}</a>
         {% endfor %}
         | <i class="fa fa-tags"></i>
         {% for ta in page.tags %}
-          #<a href="/en/tags/#{{ta}}">{{ta}}</a>{% if forloop.last != true %},{%endif%}
+          #<a href="/tags/#{{ta}}">{{ta}}</a>{% if forloop.last != true %},{%endif%}
         {% endfor %}
     </section>
