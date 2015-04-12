@@ -19,7 +19,7 @@ title: "Tags"
 	  <h2 id="{{ this_word | cgi_escape }}">{{ this_word }}</h2>
 	  <ul>
 	    {% for post in site.tags[this_word] %}
-	      <li>{{ post.date | date: "%b %d %Y" }}&nbsp;&raquo;&nbsp;<a href="{{ post.url }}">{{ post.title }}</a></li><br>
+	      <li>{{ post.date | date: "%b %d %Y" }}&nbsp;&raquo;&nbsp;<a href="{{ post.url }}">{{ post.title }}</a></li>
 	    {% endfor %}
 	  </ul>
 	  {% endunless %}{% endfor %}

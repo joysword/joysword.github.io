@@ -8,9 +8,9 @@ title: "Blog"
         {% for page in paginator.posts %}
         <article>
             <div class="post-list-title">
-                <h3>
+                <h2>
                     <a href="{{ page.url }}">{{ page.title }}</a>
-                </h3>
+                </h2>
 
                 {% include byline.html %}
             </div>
