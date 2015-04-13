@@ -6,7 +6,7 @@ category: Techy
 tags: LaTeX Jekyll MathJax
 ---
 
-When I was writing {% for post in site.posts %}{% if post.title contains'Unique Binary Search Trees' %}[[LeetCode] Unique Binary Search Trees]({{ post.url }}){% endif %}{% endfor %}, I decided to use $\LaTeX$ to write some formulae.
+When I was writing {% for post in site.posts %}{% if post.title contains'Unique Binary Search Trees' %}[[LeetCode] Unique Binary Search Trees]({{ post.url }}){% endif %}{% endfor %}, I decided to use `\(\LaTeX\)` to write some formulae.
 
 After googling `jekyll latex support`, I found this [article](http://liquidinertia.com/2013/07/15/latex-for-jekyll/). It took me to another [blog post](http://cwoebker.com/posts/latex-math-magic) by a high school student from Boston, which provided a nice tutorial that adds LaTeX support on Jekyll blogs by using some tricks to let [MathJax](http://www.mathjax.org/), an open source JavaSrcipt display engine for mathematics, work properly in Jekyll environment.
 
@@ -53,19 +53,19 @@ Here I have some examples taken from the MathJax [Demo Page](http://www.mathjax.
 
 #### The Lorentz Equations
 `
-$$
+\[
 \begin{aligned}
 \dot{x} & = \sigma(y-x) \\
 \dot{y} & = \rho x - y - xz \\
 \dot{z} & = -\beta z + xy
 \end{aligned}
-$$
+\]
 `
 
 #### The Cauchy-Schwarz Inequality
-
-$$ \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right) $$
-
+`
+\[ \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right) \]
+`
 
 #### A Cross Product Formula
 `
