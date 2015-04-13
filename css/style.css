@@ -633,7 +633,7 @@ article .post-list-title h2 {
 }
 
 /* MathJax */
-code.has-jax {font: inherit; font-size: 90%; background: inherit; border: inherit;}
+code.has-jax {font: inherit; font-size: 90%; background: inherit; border: inherit; color: inherit;}
 
 article table {
   border-collapse: collapse;
