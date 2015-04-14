@@ -13,7 +13,7 @@ tags: Linux Amazon EC2 AMI Nginx PHP MySQL Python Flask
 ## Install Nginx PHP-FPM and MySQL
 
 ### optional
-``` bash
+```
 sudo /bin/rpm -ivh http://ftp.uninett.no/linux/epel/6/i386/epel-release-6-8.noarch.rpm
 sudo /bin/rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 sudo /bin/rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
