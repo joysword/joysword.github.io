@@ -41,6 +41,7 @@ MathJax.Hub.Queue(function() {
 {% endhighlight %}
 
 Test fancy code block:
+
 ``` javascript
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
@@ -72,29 +73,29 @@ code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inher
 Here I have some examples taken from the MathJax [Demo Page](http://www.mathjax.org/demos/tex-samples/).
 
 #### The Lorentz Equations
-`
-\[
+
+\\[
 \begin{aligned}
 \dot{x} & = \sigma(y-x) \\
 \dot{y} & = \rho x - y - xz \\
 \dot{z} & = -\beta z + xy
 \end{aligned}
-\]
-`
+\\]
+
 
 #### The Cauchy-Schwarz Inequality
-`
-\[ \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right) \]
-`
+
+\\[ \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right) \\]
+
 
 #### A Cross Product Formula
-`
-\[\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}
+
+\\[\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}
 \mathbf{i} & \mathbf{j} & \mathbf{k} \\
 \frac{\partial X}{\partial u} &  \frac{\partial Y}{\partial u} & 0 \\
 \frac{\partial X}{\partial v} &  \frac{\partial Y}{\partial v} & 0
-\end{vmatrix}  \]
-`
+\end{vmatrix}  \\]
+
 
 #### The probability of getting `\(k\)` heads when flipping `\(n\)` coins is
 `
