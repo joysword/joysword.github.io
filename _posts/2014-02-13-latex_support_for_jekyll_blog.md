@@ -8,6 +8,8 @@ tags: LaTeX Jekyll MathJax
 
 When I was writing {% for post in site.posts %}{% if post.title contains'Unique Binary Search Trees' %}[[LeetCode] Unique Binary Search Trees]({{ post.url }}){% endif %}{% endfor %}, I decided to use `\(\LaTeX\)` to write some formulae.
 
+test \\(\LaTeX\\)
+
 After googling `jekyll latex support`, I found this [article](http://liquidinertia.com/2013/07/15/latex-for-jekyll/). It took me to another [blog post](http://cwoebker.com/posts/latex-math-magic) by a high school student from Boston, which provided a nice tutorial that adds LaTeX support on Jekyll blogs by using some tricks to let [MathJax](http://www.mathjax.org/), an open source JavaSrcipt display engine for mathematics, work properly in Jekyll environment.
 
 <!--more-->
@@ -37,6 +39,24 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 {% endhighlight %}
+
+Test fancy code block:
+``` javascript
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+    tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+	}
+});
+MathJax.Hub.Queue(function() {
+	var all = MathJax.Hub.getAllJax(), i;
+	for(i=0; i < all.length; i += 1) {
+		all[i].SourceElement().parentNode.className += ' has-jax';
+	}
+});
+</script>
+```
 
 Line 1 is to include MathJax. MathJax.Hub.Config is to configure which tags to skip.MathJax.Hub.Queue adds a function to add string ` has-jax` to all LaTeX code blocks.
 
