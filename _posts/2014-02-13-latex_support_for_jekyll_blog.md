@@ -42,7 +42,7 @@ MathJax.Hub.Queue(function() {
 
 Test fancy code block:
 
-``` javascript
+``` html
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
 MathJax.Hub.Config({
@@ -76,8 +76,8 @@ Here I have some examples taken from the MathJax [Demo Page](http://www.mathjax.
 
 \\[
 \begin{aligned}
-\dot{x} & = \sigma(y-x) \\
-\dot{y} & = \rho x - y - xz \\
+\dot{x} & = \sigma(y-x) \\\
+\dot{y} & = \rho x - y - xz \\\
 \dot{z} & = -\beta z + xy
 \end{aligned}
 \\]
