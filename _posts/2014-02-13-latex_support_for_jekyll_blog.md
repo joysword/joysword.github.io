@@ -96,6 +96,8 @@ using `\\[ .. \\]`:
 
 using `` `\[ .. \]` ``:
 
+three slashes:
+
 `
 \[
 \begin{aligned}
@@ -106,11 +108,38 @@ using `` `\[ .. \]` ``:
 \]
 `
 
+two slashes:
+
+`
+\[
+\begin{aligned}
+\dot{x} & = \sigma(y-x) \\
+\dot{y} & = \rho x - y - xz \\
+\dot{z} & = -\beta z + xy
+\end{aligned}
+\]
+`
+
+using `` `$$ .. $$` ``:
+
+`
+$$
+\begin{aligned}
+\dot{x} & = \sigma(y-x) \\
+\dot{y} & = \rho x - y - xz \\
+\dot{z} & = -\beta z + xy
+\end{aligned}
+$$
+`
+
 using `$ .. $`: $\sum$
 
 using `\\( .. \\)`: \\(\sum\\)
 
 using `` `\( .. \)` ``: `\(\sum\)`
+
+using `` `$ .. $` ``: `$\sum$`
+
 
 #### The Cauchy-Schwarz Inequality
 
