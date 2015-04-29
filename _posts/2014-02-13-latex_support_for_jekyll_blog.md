@@ -74,6 +74,18 @@ Here I have some examples taken from the MathJax [Demo Page](http://www.mathjax.
 
 #### The Lorentz Equations
 
+using `$$ .. $$`:
+
+$$
+\begin{aligned}
+\dot{x} & = \sigma(y-x) \\\
+\dot{y} & = \rho x - y - xz \\\
+\dot{z} & = -\beta z + xy
+\end{aligned}
+$$
+
+using `\\[ .. \\]`:
+
 \\[
 \begin{aligned}
 \dot{x} & = \sigma(y-x) \\\
@@ -82,6 +94,23 @@ Here I have some examples taken from the MathJax [Demo Page](http://www.mathjax.
 \end{aligned}
 \\]
 
+using `` `\[ .. \]` ``:
+
+`
+\[
+\begin{aligned}
+\dot{x} & = \sigma(y-x) \\\
+\dot{y} & = \rho x - y - xz \\\
+\dot{z} & = -\beta z + xy
+\end{aligned}
+\]
+`
+
+using `$ .. $`: $\sum$
+
+using `\\( .. \\)`: \\(\sum\\)
+
+using `` `\( .. \)` ``: `\(\sum\)`
 
 #### The Cauchy-Schwarz Inequality
 
