@@ -65,7 +65,7 @@ Line 1 is to include MathJax. MathJax.Hub.Config is to configure which tags to s
 In your main CSS file, add the following code to set style for LaTeX code. On example would be:
 
 {% highlight CSS %}
-code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit; color: inherit}
 {% endhighlight %}
 
 ### Examples
