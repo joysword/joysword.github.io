@@ -55,8 +55,8 @@ Here I have some examples taken from the MathJax [Demo Page](http://www.mathjax.
 
 $$
 \begin{aligned}
-\dot{x} & = \sigma(y-x) \\
-\dot{y} & = \rho x - y - xz \\
+\dot{x} & = \sigma(y-x) \\\
+\dot{y} & = \rho x - y - xz \\\
 \dot{z} & = -\beta z + xy
 \end{aligned}
 $$
@@ -69,8 +69,8 @@ $$ \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) 
 #### A Cross Product Formula
 
 $$\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}
-\mathbf{i} & \mathbf{j} & \mathbf{k} \\\
-\frac{\partial X}{\partial u} &  \frac{\partial Y}{\partial u} & 0 \\\
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\\\
+\frac{\partial X}{\partial u} &  \frac{\partial Y}{\partial u} & 0 \\\\
 \frac{\partial X}{\partial v} &  \frac{\partial Y}{\partial v} & 0
 \end{vmatrix} $$
 
