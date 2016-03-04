@@ -1,8 +1,10 @@
 paginate: 10
-markdown: redcarpet
-pygments: true
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
 timezone: America/Chicago
 encoding: UTF-8
 permalink: posts/:year/:month/:title
