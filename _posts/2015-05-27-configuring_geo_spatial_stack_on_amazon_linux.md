@@ -2,7 +2,7 @@
 layout: post
 title: "Configuring a Geo-spatial Stack on Amazon Linux"
 date: 2015-05-27 12:35
-category: Techy
+category: techy
 tags: Linux Amazon EC2 AMI Apache PostgreSQL PostGIS GeoServer Tomcat
 ---
 

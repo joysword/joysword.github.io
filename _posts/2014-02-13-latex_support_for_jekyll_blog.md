@@ -2,7 +2,7 @@
 layout: post
 title: LaTeX Support for Jekyll Blog
 date: 2014-02-13 9:00
-category: Techy
+category: techy
 tags: LaTeX Jekyll MathJax
 ---
 

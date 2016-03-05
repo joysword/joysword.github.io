@@ -2,7 +2,7 @@
 layout: post
 title: "Install Nginx PHP MySQL Python Flask on Amazon EC2 Linux AMI"
 date: 2015-01-01 13:17
-category: Techy
+category: techy
 tags: Linux Amazon EC2 AMI Nginx PHP MySQL Python Flask
 ---
 
