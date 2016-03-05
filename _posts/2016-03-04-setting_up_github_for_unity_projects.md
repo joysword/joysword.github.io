@@ -2,7 +2,10 @@
 layout: post
 title: "Setting Up Github (and Git LFS) for Unity projects"
 category: game-dev
-tags: Unity Github "Team Management"
+tags:
+ Unity
+ Github
+ Team Management
 ---
 
 ## Assumptions
