@@ -8,7 +8,7 @@ kramdown:
   syntax_highlighter: rouge
 timezone: America/Chicago
 encoding: UTF-8
-permalink: posts/:year/:month/:title
+permalink: posts/:year/:month/:title/
 title:
   zh: 夜阑卧听风吹雨
   en: Shi Yin's Blog
