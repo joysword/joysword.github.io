@@ -25,7 +25,7 @@ For Windows users, download the installer from [official website](https://git-lf
 * install Git LFS (see Install Git LFS section)
 * add file types to use Git LFS to manage by running `git lfs track "*.<file_extensions>"`
 	- for example, to use Git LFS to manage `psd` files, run `git lfs track "*.psd"`
-	- **Tip**: file types I use Git LFS to manage are: `psd`, `png`, `mp3`, `wav`, `prefab`, `unity`, `xcf`
+	- **Tip**: file types I use Git LFS to manage are: `.psd`, `.png`, `.mp3`, `.wav`, `.prefab`, `.fbx`, `.xcf` (**Warning**: It is not recommended to use LFS to manage `.unity` scene files, otherwise you will be forced to have only one person working on a scene at all times)
 	- **Note**: this step can be done by editing `.gitattributes` directly, one line one type, like this: `*.psd filter=lfs diff=lfs merge=lfs -text`
 * create an empty Unity project
 * change project settings (based on [this Stack Overflow post](http://stackoverflow.com/questions/21573405/how-to-prepare-a-unity-project-for-git))
