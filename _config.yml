@@ -1,4 +1,4 @@
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 paginate: 6
 highlighter: rouge
 markdown: kramdown
@@ -6,7 +6,7 @@ kramdown:
   input: GFM
   auto_ids: true
   syntax_highlighter: rouge
-timezone: America/Chicago
+timezone: America/Los_Angeles
 encoding: UTF-8
 permalink: posts/:year/:month/:title/
 title:
@@ -21,9 +21,9 @@ author:
     zh: 殷实
     en: Shi Yin
   github: joysword
-  email: syin8@uic.edu
+  email: joysword@me.com
 keywords:
-  zh: joysword, 殷实, 个人主页, 博客, 作品集, 游戏, 电子游戏, Jekyll, Bootstrap, Font Awesome
-  en: joysword, Shi Yin, Shi, Yin, personal website, portfolio, games, blog, Video Games, Jekyll, Bootstrap, Font Awesome
+  zh: joysword, 殷实, 个人主页, 博客, 作品集, 游戏, 电子游戏, 虚拟现实, 数据可视化, 可视化, Jekyll, Bootstrap, Font Awesome
+  en: joysword, Shi Yin, portfolio, games, blog, Video Games, Virtual Reality, Data Visualization, Jekyll, Bootstrap, Font Awesome
 paginate_path: "page/:num"
 analytics: UA-43448447-5

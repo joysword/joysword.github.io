@@ -13,6 +13,9 @@ tags: Linux Amazon EC2 AMI Nginx PHP MySQL Python Flask
 ## Install Nginx PHP-FPM and MySQL
 
 ### optional
+
+*update 2018-01-31*: The first line of the following snippet can be skipped as AMI now has built-in epel 6.8.9 installed as of today
+
 ```
 sudo /bin/rpm -ivh http://ftp.uninett.no/linux/epel/6/i386/epel-release-6-8.noarch.rpm
 sudo /bin/rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
@@ -182,6 +185,9 @@ sudo service memcached start
 ```
 
 ### MILESTONE #1
+
+*update 2018-01-31*: The format of url to EC2 instances have changed. Refer to your AWS dashboard's `Public DNS` field for the actual address of your server. A safe way is to just use the IP address. This also applies for the rest of the article.
+
 Browse to your server and **you should get the test page**  
 `http://ec2-54-208-30-174.compute-1.amazonaws.com/`
 
@@ -190,6 +196,8 @@ Browse to your server and **you should get the test page**
 [2] http://codingsteps.com/install-php-fpm-nginx-mysql-on-ec2-with-amazon-linux-ami/
 
 ## Install Python 2.7.8
+
+*update 2018-01-31*: This section might be entirely skipped if you don't need a copy of Python in `usr/local`, as AMI has built-in Python 2.7.12 installed as of today
 
 ### install dependencies
 ```
@@ -213,6 +221,9 @@ make && sudo make altinstall
 * It is critical that you use `make altinstall` when installing your custom version of Python. If using the normal `make install`, you will end up with two different versions of Python in the filesystem both named `python`. This can lead to problems that are very hard to diagnose.
 
 ### download and install setuptools and pip
+
+*update 2018-01-31*: Please use following address to download ez_setup.py: [https://bootstrap.pypa.io/ez_setup.py](https://bootstrap.pypa.io/ez_setup.py)
+
 ```
 # get the setup script for setuptools:
 cd ~
@@ -279,6 +290,9 @@ if __name__ == "__main__":
 ```
 
 ### MILESTONE #2
+
+*update 2018-01-31*: Make sure you have allowed TCP connections via port 8080 in security settings of your EC2 instance.
+
 Run the script of the testing app
 
 ```
@@ -295,8 +309,10 @@ Browse to your server's port 8080 and see the app in action
 ### install uwsgi
 ```
 pip install uwsgi
+```
 
-# back up current nginx conf
+### back up current nginx conf
+```
 sudo mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
 ```
 
@@ -320,6 +336,40 @@ server {
         uwsgi_pass unix:/var/www/demoapp/demoapp_uwsgi.sock;
     }
 } 
+```
+
+### edit nginx configuration
+```
+sudo vi /etc/nginx/nginx.conf
+```
+
+in vim
+
+```
+# delete unnecessary settings and make the http section look like below:
+
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 2048;
+
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+
+    # Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    include /etc/nginx/conf.d/*.conf;
+
+}
 ```
 
 ### symlink demoapp configuration file to nginx configuration file

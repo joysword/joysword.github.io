@@ -6,7 +6,7 @@ category: techy
 tags: LaTeX Jekyll MathJax
 ---
 
-When I was writing {% for post in site.posts %}{% if post.title contains'Unique Binary Search Trees' %}[[LeetCode] Unique Binary Search Trees]({{ post.url }}){% endif %}{% endfor %}, I decided to use \\(\LaTeX\\) to write some formulae.
+When I was writing {% for post in site.posts %}{% if post.title contains 'Unique Binary Search Trees' %}[[LeetCode] Unique Binary Search Trees]({{ post.url }}){% endif %}{% endfor %}, I decided to use \\(\LaTeX\\) to write some formulae.
 
 After googling `jekyll latex support`, I found this [article](http://liquidinertia.com/2013/07/15/latex-for-jekyll/). It took me to another [blog post](http://cwoebker.com/posts/latex-math-magic) by a high school student from Boston, which provided a nice tutorial that adds LaTeX support on Jekyll blogs by using some tricks to let [MathJax](http://www.mathjax.org/), an open source JavaSrcipt display engine for mathematics, work properly in Jekyll environment.
 
@@ -14,12 +14,12 @@ After googling `jekyll latex support`, I found this [article](http://liquidinert
 
 Generally speaking, the issue that every Jekyll blog has is that when Markdown will interpret all tags even if some of them are actually LaTeX tags. For more information, please refer to [this blog post](http://cwoebker.com/posts/latex-math-magic).
 
-The way to we use MathJax is to put LaTeX code in a `code block`, using `acute` symbol: `` ` ``. But MathJax won't render text between `<code>` tags by default since in most cases code between `<code>` tags are not LaTeX code.
+The way we would use MathJax is to put LaTeX code in a `code block`, using `acute` symbol: `` ` ``. But MathJax wouldn't render text between `<code>` tags by default since in most cases code between `<code>` tags are not LaTeX code.
 
 To solve this issue, we need to add some JavaScript and some CSS (optional).
 
 #### In Main Layout File
-In your main layoug file, add the following code anywhere. I would like to put all my JavaScript code at the end of the file, only before the closing `<\html>` tag.
+In your main layout file, add the following code anywhere. I would put all my JavaScript code at the end of the file, only before the closing `<\html>` tag.
 
 ``` html
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -38,10 +38,10 @@ MathJax.Hub.Queue(function() {
 </script>
 ```
 
-Line 1 is to include MathJax. MathJax.Hub.Config is to configure which tags to skip.MathJax.Hub.Queue adds a function to add string ` has-jax` to all LaTeX code blocks.
+Line 1 is to include MathJax. MathJax.Hub.Config is to configure which tags to skip. MathJax.Hub.Queue adds a function to add string `has-jax` to all LaTeX code blocks.
 
 #### In Main CSS File
-In your main CSS file, add the following code to set style for LaTeX code. On example would be:
+In your main CSS file, add the following code to set style for LaTeX code. One example would be:
 
 ``` css
 code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit; color: inherit}
@@ -98,3 +98,4 @@ $$ P(E) = {n \choose k} p^k (1-p)^{ n-k} $$
 \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\\
 \nabla \cdot \vec{\mathbf{B}} & = 0 \end{aligned}
 \\]
+
